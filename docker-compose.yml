@@ -1,26 +1,35 @@
 version: '2.2'
 
-name: swagger
-
 services:
 
   editor:
     image: swaggerapi/swagger-editor:latest    
     restart: unless-stopped
+    networks:
+      - swagger
     ports:
       - 32769:80
       - 32768:8080
 
   ui:
     image: swaggerapi/swagger-generator:latest 
-    restart: unless-stopped
+    restart: unless-stopped    
     environment:
       - GENERATOR_HOST="http://${HOST_IP}"
+    networks:
+      - swagger
     ports:
       - 32770:80 
       
   validator:
     image: 	swaggerapi/swagger-validator:latest
     restart: unless-stopped
+    networks:
+      - swagger
     ports:
       - 32771:8080
+
+networks:
+
+  swagger:
+    driver: bridge
