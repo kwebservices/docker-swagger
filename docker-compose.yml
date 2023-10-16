@@ -1,5 +1,7 @@
 version: '2.2'
 
+name: swagger
+
 services:
 
   editor:
@@ -12,6 +14,8 @@ services:
   ui:
     image: swaggerapi/swagger-generator:latest 
     restart: unless-stopped
+    environment:
+      - GENERATOR_HOST=${HOSTNAME}
     ports:
       - 32770:80 
       
