@@ -32,4 +32,5 @@ services:
 networks:
 
   swagger:
+    name: "swagger"
     driver: bridge
