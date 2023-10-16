@@ -15,7 +15,7 @@ services:
     image: swaggerapi/swagger-generator:latest 
     restart: unless-stopped
     environment:
-      - GENERATOR_HOST=${HOSTNAME}
+      - GENERATOR_HOST=http://${HOSTNAME}
     ports:
       - 32770:80 
       
